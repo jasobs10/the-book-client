@@ -8,7 +8,17 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = configureStore();
+  let store;
+  if (localStorage.currentUser) {
+
+    //when building list of users, can add the current user to the list of users to preload
+    const preloadedState = {
+      session: {
+        currentUser: JSON.parse(localStorage.currentUser)
+      }
+    }
+    store = configureStore(preloadedState);
+  }
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store} />, document.getElementById('root'));
