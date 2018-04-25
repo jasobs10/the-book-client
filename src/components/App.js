@@ -1,22 +1,16 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
+import React from 'react';
+import { AuthRoute, ProtectedRoute } from './auth/auth_routes.jsx';
+import { Switch } from 'react-router-dom';
+import Splash from './auth/splash.jsx';
 import '../styles/base/App.css';
-import '../styles/base/index.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = () => (
+
+  <Switch>
+    <AuthRoute exact path="/" component={Splash} />
+    <ProtectedRoute exact path="/home"/>
+  </Switch>
+
+);
 
 export default App;

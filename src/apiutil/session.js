@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const baseUrl = process.env.REACT_APP_API_URL;
+
 export const signup = (user) => {
   return axios({
     method: 'POST',
-    url: '/api/user',
+    url: `${baseUrl}/api/users`,
     data: { user }
   });
 };
@@ -11,7 +13,7 @@ export const signup = (user) => {
 export const login = (user) => {
   return axios({
     method: 'POST',
-    url: 'api/session',
+    url: `${baseUrl}/api/session`,
     data: { user }
   })
 };
@@ -19,6 +21,6 @@ export const login = (user) => {
 export const logout = () => {
   return axios({
     method: 'DELETE',
-    url: 'api/session',
+    url: `${baseUrl}/api/session`,
   })
 };
