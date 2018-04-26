@@ -2,10 +2,21 @@ import React from 'react';
 import '../../styles/splash/splash.css';
 
 // should get state, and map dispatch to the modals, who are just presentational components
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+
+// import SESSION_FORM from '../shared/modal_root.jsx';
+import { showModal } from '../../actions/modal_actions.js';
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showSessionForm: (modal) => dispatch(showModal(modal))
+  }
+};
+
 // import { login,  signup } from '../../actions/session_actions.js';
 
-export const Splash = () => {
+
+const Splash = ({ showSessionForm }) => {
   return (
     <div className="splash-wrapper">
       <section className="splash-header">
@@ -29,9 +40,7 @@ export const Splash = () => {
   );
 }
 
-
-
-
+export default connect(null, mapDispatchToProps)(Splash);
 
 
 

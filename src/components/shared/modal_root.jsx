@@ -1,5 +1,5 @@
 import React from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 import ConfirmModal from './confirm_modal.jsx';
 import SessionForm from '../auth/session_form.jsx';
 
