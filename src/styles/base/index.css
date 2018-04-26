@@ -343,3 +343,15 @@ template {
 * {
   box-sizing: border-box;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+a {
+  cursor: pointer;
+}
