@@ -15,10 +15,11 @@ const mapStateToProps = (state) => state.modal;
 
 const ModalRoot = ({ modalType, modalProps }) => {
   if (!modalType) {
-    return (<h1>klsjdfdsldf</h1>)
+    return null;
   }
 
   const ModalComponent = MODAL_COMPONENTS[modalType];
+  //put the react-modal-wrapper her mang
 
   return <ModalComponent {...modalProps} />
 };

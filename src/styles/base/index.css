@@ -355,3 +355,35 @@ button:focus {
 a {
   cursor: pointer;
 }
+
+input {
+  padding: 10px;
+  border: 1px solid rgb(152, 152, 152);
+  border-radius: 3px;
+}
+
+*:focus {
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid #002cc7;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(153, 153, 153);
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+}
+
+.link-to {
+  cursor: pointer;
+  color: rgb(43, 128, 255);
+}

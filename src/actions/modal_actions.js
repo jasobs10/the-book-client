@@ -9,10 +9,8 @@ export const showModal = ({ modalType, modalProps }) => {
   };
 };
 
-export const hideModal = ({ modalType, modalProps }) => {
+export const hideModal = () => {
   return {
-    type: HIDE_MODAL,
-    modalType,
-    modalProps
+    type: HIDE_MODAL
   };
 };

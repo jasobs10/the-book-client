@@ -5,18 +5,51 @@ import '../../styles/splash/splash.css';
 import { connect } from 'react-redux';
 
 // import SESSION_FORM from '../shared/modal_root.jsx';
-import { showModal } from '../../actions/modal_actions.js';
+import { showModal, hideModal } from '../../actions/modal_actions.js';
+import { SESSION_FORM } from '../shared/modal_root.jsx';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showSessionForm: (modal) => dispatch(showModal(modal))
+    showModal: (modal) => dispatch(showModal(modal)),
+    hideModal: () => dispatch(hideModal())
   }
 };
 
 // import { login,  signup } from '../../actions/session_actions.js';
 
 
-const Splash = ({ showSessionForm }) => {
+const Splash = ({ showModal, hideModal }) => {
+
+  // const loginModal = {
+  //   modalType: SESSION_FORM,
+  //   modalProps: {
+  //   }
+  // };
+
+  const buildSessionType = (type) => {
+    return {
+      modalType: SESSION_FORM,
+      modalProps: {
+        type,
+        inputs: type === 'signup' ? ['username', 'email', 'password', 'f_name', 'l_name', 'motto'] : ['username', 'password'],
+        showModal,
+        hideModal,
+        modalType: SESSION_FORM
+      }
+    }
+  }
+
+  // const signupModal = {
+  //   modalType: SESSION_FORM,
+  //   modalProps: {
+  //     type: 'signup',
+  //     inputs: ['username', 'email', 'password', 'f_name', 'l_name', 'motto'],
+  //     showModal,
+  //     hideModal,
+  //     modalType: SESSION_FORM
+  //   }
+  // }
+
   return (
     <div className="splash-wrapper">
       <section className="splash-header">
@@ -26,7 +59,7 @@ const Splash = ({ showSessionForm }) => {
           </div>
           <div className="login-buttons-container">
             <button>Log In</button>
-            <button>Sign Up</button>
+            <button onClick={() => showModal(buildSessionType('signup'))}>Sign Up</button>
           </div>
         </div>
         <div>

@@ -1,0 +1,26 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.session-modal {
+
+  position: absolute;
+  border-radius: 5px;
+  top: 10vh;
+  width: 330px;
+  left: 50%;
+  /*set margin to negative half of the fixed width*/
+  margin-left: -165px;
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  webkit-overflow-scrolling: touch;
+  outline: none;
+  padding: 20px;
+
+}
