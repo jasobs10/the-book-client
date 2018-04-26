@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../styles/splash/splash.css';
 
+// should get state, and map dispatch to the modals, who are just presentational components
 // import { connect } from 'react-redux';
 // import { login,  signup } from '../../actions/session_actions.js';
 
