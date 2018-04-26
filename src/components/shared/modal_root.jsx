@@ -15,7 +15,7 @@ const mapStateToProps = (state) => state.modal;
 
 const ModalRoot = ({ modalType, modalProps }) => {
   if (!modalType) {
-    return null;
+    return (<h1>klsjdfdsldf</h1>)
   }
 
   const ModalComponent = MODAL_COMPONENTS[modalType];
