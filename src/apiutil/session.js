@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { header } from './header_config.js';
 
 const baseUrl = process.env.REACT_APP_API_URL;
-
 
 export const signup = (user) => {
   return axios({
@@ -20,8 +20,10 @@ export const login = (user) => {
 };
 
 export const logout = () => {
+  debugger
   return axios({
     method: 'DELETE',
     url: `${baseUrl}/api/session`,
+    headers: header
   })
 };

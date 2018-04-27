@@ -9,6 +9,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+  // make a call to look up the token
+  // check shape first in case of error
   if (localStorage.currentUser) {
 
     //when building list of users, can add the current user to the list of users to preload

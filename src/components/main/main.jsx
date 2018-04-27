@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.session.currentUser,
+    errors: state.errors
   }
 };
 
@@ -16,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const Main = props => (
   <div>
-    Logged in bro
+    <button onClick={() => props.logout()}>log out nukka</button>
   </div>
 );
 

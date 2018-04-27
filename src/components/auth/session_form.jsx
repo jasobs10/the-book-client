@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
-import { login, signup } from '../../actions/session_actions.js';
+import { login, signup, receiveSessionErrors } from '../../actions/session_actions.js';
 import '../../styles/base/modal.css';
 import '../../styles/splash/session_form.css';
 
 const mapDispatchToProps = (dispatch) => (
   {
     login: (user) => dispatch(login(user)),
-    signup: (user) => dispatch(signup(user))
+    signup: (user) => dispatch(signup(user)),
+    clearSessionErrors: () => dispatch(receiveSessionErrors([]))
   }
 )
+
+const mapStateToProps = ({ errors, session }) => {
+  return { errors, session }
+}
 
 ReactModal.setAppElement('#root');
 class SessionForm extends React.Component {
@@ -35,24 +40,29 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.inputs.forEach((input) => {
-      this.setState({
-        [input]: ''
-      });
-    })
+    this.clearInputs();
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    const submissionMapper = {
+      'signup': this.props.signup,
+      'login': this.props.login
+    }
+
     const state = {};
     this.props.inputs.forEach((input) => {
       state[input] = this.state[input];
     });
-    if (this.props.type === 'signup') {
-      this.props.signup(state);
-    } else {
-      this.props.login(state);
-    }
+
+    submissionMapper[this.props.type](state).then(() => {
+      if (this.props.session.currentUser) {
+        this.props.hideModal();
+      } else {
+        // render errors
+      }
+    });
+
   }
 
   updateField(field) {
@@ -70,7 +80,6 @@ class SessionForm extends React.Component {
       return (
         <input type={type} placeholder={placeholder} onChange={this.updateField(input)} key={i} />
       )
-
     });
   }
 
@@ -79,7 +88,14 @@ class SessionForm extends React.Component {
       isOpen: false
     })
     this.props.hideModal();
-    // in here, dispatch the action that hides the modal dawg
+  }
+
+  clearInputs() {
+    this.props.inputs.forEach((input) => {
+      this.setState({
+        [input]: ''
+      });
+    })
   }
 
   switchSessionModal() {
@@ -95,11 +111,12 @@ class SessionForm extends React.Component {
         modalType: SESSION_FORM
       }
     };
-
+    this.props.clearSessionErrors();
     this.props.showModal(modal);
   }
 
-  // allow email or username to be inputted for log in nikka
+  // add email password retrival
+  // make button a submit button so we can press enter
 
   render() {
 
@@ -118,7 +135,7 @@ class SessionForm extends React.Component {
           <span>the antithesis of the casual office league</span>
           <section className="session-inputs-wrapper">
             {this.renderInputs()}
-            <button className="session-button session-button-large" onClick={this.handleSubmit}>{this.props.signup ? 'REGISTER' : 'SIGN IN'}</button>
+            <button className="session-button session-button-large" onClick={this.handleSubmit}>{this.props.type === 'signup' ? 'REGISTER' : 'SIGN IN'}</button>
           </section>
           <div className="session-footer">
             {this.props.type === 'signup' && (<span>Already have an account? <span className="link-to" onClick={this.switchSessionModal}>Log in instead</span></span>)}
@@ -130,4 +147,4 @@ class SessionForm extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SessionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
