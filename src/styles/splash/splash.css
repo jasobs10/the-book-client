@@ -40,5 +40,44 @@
   background-color: white;
   color: rgb(0, 6, 29);
   transition: .2s;
+}
 
+.splash-header-body {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.splash-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  background-color: rgb(230, 230, 230);
+}
+
+.splash-body > h2 {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.splash-body-main {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.splash-features-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.splash-features-container > div {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

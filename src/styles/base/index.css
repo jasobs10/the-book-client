@@ -342,6 +342,7 @@ template {
 
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 button {
@@ -390,4 +391,8 @@ input[type="submit"] {
 .link-to {
   cursor: pointer;
   color: rgb(43, 128, 255);
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
 }

@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // save expiry on the frontend, check and then reset localstorage and preloadedstate if expired.
   // put it in the protected / authorized route things
 
+  // on requests with no login, popup login modal, and then make the request
+
 
   if (localStorage.currentUser) {
 

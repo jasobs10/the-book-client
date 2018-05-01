@@ -8,6 +8,11 @@ import { connect } from 'react-redux';
 import { showModal, hideModal } from '../../actions/modal_actions.js';
 import { SESSION_FORM } from '../shared/modal_root.jsx';
 
+import createLeague from '../../assets/imgs/create_league.png';
+import inviteFriends from '../../assets/imgs/invite_friends.png';
+import winMoney from '../../assets/imgs/money.pmg';
+import podium from '../../assets/ings/win.png';
+
 const mapDispatchToProps = (dispatch) => {
   return {
     showModal: (modal) => dispatch(showModal(modal)),
@@ -15,16 +20,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-// import { login,  signup } from '../../actions/session_actions.js';
-
 
 const Splash = ({ showModal, hideModal }) => {
-
-  // const loginModal = {
-  //   modalType: SESSION_FORM,
-  //   modalProps: {
-  //   }
-  // };
 
   const buildSessionType = (type) => {
     return {
@@ -39,17 +36,6 @@ const Splash = ({ showModal, hideModal }) => {
     }
   }
 
-  // const signupModal = {
-  //   modalType: SESSION_FORM,
-  //   modalProps: {
-  //     type: 'signup',
-  //     inputs: ['username', 'email', 'password', 'f_name', 'l_name', 'motto'],
-  //     showModal,
-  //     hideModal,
-  //     modalType: SESSION_FORM
-  //   }
-  // }
-
   return (
     <div className="splash-wrapper">
       <section className="splash-header">
@@ -62,130 +48,30 @@ const Splash = ({ showModal, hideModal }) => {
             <button onClick={() => showModal(buildSessionType('signup'))}>Sign Up</button>
           </div>
         </div>
-        <div>
+        <div className="splash-header-body">
           body
         </div>
       </section>
       <section className="splash-body">
-        sdfdsf
+        <h2>pick against your friends family and co-workers</h2>
+        <div className="splash-body-main">
+          <div className="splash-features-container">
+            <div>
+              sdfsdf
+            </div>
+
+            <div>
+              sdfsdf
+            </div>
+
+            <div>
+              sdfsdf
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
 }
 
 export default connect(null, mapDispatchToProps)(Splash);
-
-
-
-
-
-
-
-
-
-
-
-// const mapStateToProps = (state) => {
-//   return {
-//     errors: state.errors,
-//     session: state.session
-//   }
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signup: (user) => dispatch(signup(user)),
-//     login: (user) => dispatch(login(user))
-//   }
-// };
-//
-// class Splash extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       username: '',
-//       password: '',
-//       f_name: '',
-//       l_name: '',
-//       motto: '',
-//       email: ''
-//     }
-//
-//     this.submit = this.submit.bind(this);
-//
-//   }
-//
-//   updateField(field) {
-//
-//     return (e) => {
-//       this.setState({
-//         // short for this.state[field]
-//         [field]: e.currentTarget.value
-//       });
-//     }
-//   }
-//
-//   submit(e) {
-//     e.preventDefault();
-//     // console.log('hello');
-//     const user = Object.assign({}, this.state);
-//     this.props.signup(user);
-//   }
-//
-//   render() {
-//     return (
-//       <div>
-//         <h1>Da login page</h1>
-//         <h2>create user</h2>
-//         <form>
-//           <input type="text"
-//             placeholder = "username"
-//             value={this.state.username}
-//             onChange={this.updateField('username')}
-//           />
-//
-//           <input type="text"
-//             placeholder = "Email"
-//             value={this.state.email}
-//             onChange={this.updateField('email')}
-//           />
-//
-//           <input type="text"
-//             placeholder = "f_name"
-//             value={this.state.f_name}
-//             onChange={this.updateField('f_name')}
-//           />
-//
-//           <input type="text"
-//             placeholder = "l_name"
-//             value={this.state.l_name}
-//             onChange={this.updateField('l_name')}
-//           />
-//
-//           <input type="text"
-//             placeholder = "motto"
-//             value={this.state.motto}
-//             onChange={this.updateField('motto')}
-//           />
-//
-//           <input type="password"
-//             placeholder = "password"
-//             value={this.state.password}
-//             onChange={this.updateField('password')}
-//           />
-//
-//           <button onClick={(e) => this.submit(e)}>Sign up</button>
-//
-//
-//         </form>
-//       </div>
-//
-//
-//     );
-//   }
-//
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Splash);
-
-// logout needs to clear local storage
