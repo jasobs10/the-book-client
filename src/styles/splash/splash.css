@@ -9,7 +9,7 @@
   position: relative;
   background: url('../../assets/background_imgs/splash-header.jpg');
   background-size: cover;
-  height: 500px;
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
   color: white;
@@ -18,7 +18,7 @@
 .login-bar {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 20px 40px;
 }
 
@@ -53,27 +53,43 @@
   flex-direction: column;
   align-items: center;
   padding: 25px;
-  background-color: rgb(230, 230, 230);
 }
 
 .splash-body > h2 {
+  font-size: 30px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  margin-bottom: 5px;
 }
 
 .splash-body-main {
-  margin-top: 25px;
+  margin: 25px 0 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+
 }
 
 .splash-features-container {
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 80%;
+}
+
+.splash-center {
+  background-color: rgb(228, 228, 228);
+  display: flex;
+  padding: 25px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.splash-center > div {
+  width: 500px;
+  margin-top: -30px;
 }
 
 .splash-features-container > div {
