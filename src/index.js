@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // then can set preloaded state to the current user that it returns, and update the token?
   // save expiry on the frontend, check and then reset localstorage and preloadedstate if expired.
   // put it in the protected / authorized route things
+
+
   if (localStorage.currentUser) {
 
     //when building list of users, can add the current user to the list of users to preload

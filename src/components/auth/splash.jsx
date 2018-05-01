@@ -58,7 +58,7 @@ const Splash = ({ showModal, hideModal }) => {
             <span>The Book</span>
           </div>
           <div className="login-buttons-container">
-            <button>Log In</button>
+            <button onClick={() => showModal(buildSessionType('login'))}>Log In</button>
             <button onClick={() => showModal(buildSessionType('signup'))}>Sign Up</button>
           </div>
         </div>

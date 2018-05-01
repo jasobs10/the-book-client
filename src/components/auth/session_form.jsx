@@ -133,10 +133,10 @@ class SessionForm extends React.Component {
         <div className="session-form-wrapper">
           <h3 className="session-header">The Book</h3>
           <span>the antithesis of the casual office league</span>
-          <section className="session-inputs-wrapper">
+          <form className="session-inputs-wrapper">
             {this.renderInputs()}
-            <button className="session-button session-button-large" onClick={this.handleSubmit}>{this.props.type === 'signup' ? 'REGISTER' : 'SIGN IN'}</button>
-          </section>
+            <input type="submit" className="session-button session-button-large" onClick={this.handleSubmit} value={this.props.type === 'signup' ? 'REGISTER' : 'SIGN IN'}/>
+          </form>
           <div className="session-footer">
             {this.props.type === 'signup' && (<span>Already have an account? <span className="link-to" onClick={this.switchSessionModal}>Log in instead</span></span>)}
             {this.props.type !== 'signup' && (<span>Don't have an account? <span className="link-to" onClick={this.switchSessionModal}>Register now</span></span>)}
