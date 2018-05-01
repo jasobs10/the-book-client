@@ -10,8 +10,8 @@ import { SESSION_FORM } from '../shared/modal_root.jsx';
 
 import createLeague from '../../assets/imgs/create_league.png';
 import inviteFriends from '../../assets/imgs/invite_friends.png';
-import winMoney from '../../assets/imgs/money.pmg';
-import podium from '../../assets/ings/win.png';
+import winMoney from '../../assets/imgs/money.png';
+import podium from '../../assets/imgs/podium.png';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -57,15 +57,30 @@ const Splash = ({ showModal, hideModal }) => {
         <div className="splash-body-main">
           <div className="splash-features-container">
             <div>
-              sdfsdf
+              <img src={createLeague} alt="create"/>
+              <div>
+                create private leagues and invite your friends
+              </div>
+            </div>
+            <div>
+              <img src={winMoney} alt="money"/>
+              <div>
+                set buy in amount and payout rules
+              </div>
             </div>
 
             <div>
-              sdfsdf
+              <img src={inviteFriends} alt="invite"/>
+              <div>
+                join or request access to your friends' private leagues
+              </div>
             </div>
 
             <div>
-              sdfsdf
+              <img src={podium} alt="podium"/>
+              <div>
+                Set custom rankings and scores for your league
+              </div>
             </div>
           </div>
         </div>
