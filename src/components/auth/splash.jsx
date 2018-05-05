@@ -1,17 +1,19 @@
 import React from 'react';
 import '../../styles/splash/splash.css';
-
 // should get state, and map dispatch to the modals, who are just presentational components
 import { connect } from 'react-redux';
 
 // import SESSION_FORM from '../shared/modal_root.jsx';
 import { showModal, hideModal } from '../../actions/modal_actions.js';
 import { SESSION_FORM } from '../shared/modal_root.jsx';
+import Carousel from '../shared/carousel.jsx';
 
 import createLeague from '../../assets/imgs/create_league.png';
 import inviteFriends from '../../assets/imgs/invite_friends.png';
 import winMoney from '../../assets/imgs/money.png';
 import podium from '../../assets/imgs/podium.png';
+import saridSpecial from '../../assets/imgs/sarid_special.png';
+import linkstromLocks from '../../assets/imgs/linkstrom_locks.JPG';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -86,7 +88,7 @@ const Splash = ({ showModal, hideModal }) => {
       </section>
       <section className="splash-center">
         <div>
-        <h2>About</h2>
+          <h2>About</h2>
           <p>
             Welcome to the most competitive, sophisticated, and intensive NFL ATS pick'em league you will ever join.
             The antithesis of the casual office league, this is a group of elite handicappers who take pride, each and every week of the
@@ -110,8 +112,19 @@ const Splash = ({ showModal, hideModal }) => {
         </div>
 
         <div>
-          <h2>Our Sponsors</h2>
-          test
+          <div>
+            <h2>Our Sponsors</h2>
+            <div className="sponsor-container">
+              <Carousel
+                displayLength={1}
+                carouselItems={[
+                  <img src={saridSpecial} alt="sarid"/>,
+                  <img src={linkstromLocks} alt="locks"/>
+                ]}
+                isAutoScroll={true}
+              />
+            </div>
+          </div>
         </div>
 
 

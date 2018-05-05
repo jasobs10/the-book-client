@@ -80,15 +80,26 @@
 }
 
 .splash-center {
-  background-color: rgb(228, 228, 228);
+  color: rgb(147, 147, 147);
+  background-color: #f5f8fc;
   display: flex;
   padding: 25px;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
+.splash-center > h1 {
+  color: rgb(106, 106, 106);
+}
+
+.sponsor-container {
+  margin: 16px 0;
+  width: 100%;
+  height: 400px;
+}
+
 .splash-center > div {
-  width: 500px;
+  width: 45%;
   margin-top: -30px;
 }
 

@@ -1,0 +1,82 @@
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  z-index: 1;
+  background: url('../../assets/imgs/slide-background.jpg');
+  padding: 5px;
+}
+
+.next, .prev {
+  color: rgb(134, 135, 136);
+  border-radius: 5px;
+  font-size: 30px;
+  position: absolute;
+  top: 50%;
+  padding: 10px 30px;
+  background-color: rgba(203, 203, 203, .5);
+  transform: translateY(-50%);
+  z-index: 999;
+  cursor: pointer;
+}
+
+.prev {
+  left: 0;
+  /*transform: translateX(-50%);*/
+}
+
+.next {
+  right: 0;
+}
+
+.carousel-items {
+  width:100%;
+  /*height:100%;*/
+  transition: all .5s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/*remove dis*/
+
+.slide-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  margin: auto;
+  height: 100%;
+}
+
+.slide-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-img-wrapper {
+  height: 100%;
+  /*width: 70%;*/
+}
+
+.carousel-index {
+  /*position: absolute;*/
+  margin-top: 5px;
+  display:flex;
+  justify-content: center;
+}
+
+.carousel-index-item {
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: gray;
+  opacity: .7;
+  cursor: pointer;
+}
+
+.highlighted {
+  background-color: black;
+}
