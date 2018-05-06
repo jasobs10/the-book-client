@@ -77,10 +77,24 @@ class SessionForm extends React.Component {
     return this.props.inputs.map((input, i) => {
       const type = input === 'password' ? 'password' : 'text';
       const placeholder = this.inputMapper[input];
+      const errorClass = this.props.errors.session[input] || this.props.errors.session.base ? 'input-error' : '';
       return (
-        <input type={type} placeholder={placeholder} onChange={this.updateField(input)} key={i} />
+        <div key={i}>
+          <input type={type} placeholder={placeholder} onChange={this.updateField(input)} className={errorClass} />
+          {this.renderError(input)}
+        </div>
       )
     });
+  }
+
+  renderError(input) {
+    if (!this.props.errors.session[input]) return '';
+    const inputMessage = input === 'base' ? '' : `${input} `;
+    const invalidLogin = { marginTop: '-10px' };
+    return (
+      <div className={'login-error-message'} style={input === 'base' ? invalidLogin : {}}>{inputMessage + this.props.errors.session[input][0]}</div>
+    )
+
   }
 
   handleClose() {
@@ -135,6 +149,7 @@ class SessionForm extends React.Component {
           <span>the antithesis of the casual office league</span>
           <form className="session-inputs-wrapper">
             {this.renderInputs()}
+            {this.renderError('base')}
             <input type="submit" className="session-button session-button-large" onClick={this.handleSubmit} value={this.props.type === 'signup' ? 'REGISTER' : 'SIGN IN'}/>
           </form>
           <div className="session-footer">

@@ -1,6 +1,6 @@
 import { RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER } from '../actions/session_actions.js';
 
-const _defaultErrorsState = [];
+const _defaultErrorsState = {};
 
 const sessionErrorsReducer = (oldState = _defaultErrorsState, action) => {
   Object.freeze(oldState);
