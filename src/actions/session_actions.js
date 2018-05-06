@@ -33,7 +33,7 @@ export const signup = (user) => {
       setUserToLocalStorage(response.data);
       dispatch(receiveCurrentUser(response.data));
     }, (errors) => {
-      dispatch(receiveSessionErrors(errors));
+      dispatch(receiveSessionErrors(errors.response.data));
     });
   }
 };
@@ -44,7 +44,7 @@ export const login = (user) => {
       setUserToLocalStorage(response.data);
       dispatch(receiveCurrentUser(response.data));
     }, (errors) => {
-      dispatch(receiveSessionErrors(errors));
+      dispatch(receiveSessionErrors(errors.response.data));
     });
   };
 };
@@ -55,7 +55,7 @@ export const logout = () => {
       removeUserFromLocalStorage();
       dispatch(receiveCurrentUser(null));
     }, (errors) => {
-      dispatch(receiveSessionErrors(errors));
+      dispatch(receiveSessionErrors(errors.response.data));
     });
   };
 };

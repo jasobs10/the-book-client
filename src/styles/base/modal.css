@@ -28,6 +28,9 @@
   /*gives space on the bottom also*/
   max-height: 85vh;
   overflow-y: scroll;
+  -webkit-box-shadow: 0px 0px 61px -29px black;
+  -moz-box-shadow: 0px 0px 61px -29px black;
+  box-shadow: 0px 0px 61px -29px black;
 }
 
 .ReactModal__Body--open {
