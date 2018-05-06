@@ -4,12 +4,14 @@
   overflow: hidden;
   position: relative;
   display: flex;
-  z-index: 1;
   background: url('../../assets/imgs/slide-background.jpg');
   padding: 5px;
 }
 
+/*set z-index on modal, handle errors, make modal not fixed*/
+
 .next, .prev {
+  z-index: 1;
   color: rgb(134, 135, 136);
   border-radius: 5px;
   font-size: 30px;
@@ -18,7 +20,6 @@
   padding: 10px 30px;
   background-color: rgba(203, 203, 203, .5);
   transform: translateY(-50%);
-  z-index: 999;
   cursor: pointer;
 }
 
