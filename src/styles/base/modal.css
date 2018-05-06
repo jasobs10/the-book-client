@@ -29,3 +29,7 @@
   max-height: 85vh;
   overflow-y: scroll;
 }
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
