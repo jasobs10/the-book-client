@@ -58,8 +58,6 @@ class SessionForm extends React.Component {
     submissionMapper[this.props.type](state).then(() => {
       if (this.props.session.currentUser) {
         this.props.hideModal();
-      } else {
-        // render errors
       }
     });
 
@@ -94,13 +92,13 @@ class SessionForm extends React.Component {
     return (
       <div className={'login-error-message'} style={input === 'base' ? invalidLogin : {}}>{inputMessage + this.props.errors.session[input][0]}</div>
     )
-
   }
 
   handleClose() {
     this.setState({
       isOpen: false
     })
+    this.props.clearSessionErrors();
     this.props.hideModal();
   }
 
@@ -125,7 +123,6 @@ class SessionForm extends React.Component {
         modalType: SESSION_FORM
       }
     };
-    this.props.clearSessionErrors();
     this.props.showModal(modal);
   }
 
