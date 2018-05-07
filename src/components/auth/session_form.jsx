@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
       l_name: 'Last Name',
       motto: 'Quote',
       email: 'Email',
-      username: {signup: 'Username', login: 'Username or Email'},
+      username: {signup: 'Username', login: 'Username or Email', reset: 'Username or Email'},
       password: 'Password'
     }
     this.renderInputs = this.renderInputs.bind(this);
@@ -48,7 +48,8 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const submissionMapper = {
       'signup': this.props.signup,
-      'login': this.props.login
+      'login': this.props.login,
+      'reset':
     }
 
     const state = {};

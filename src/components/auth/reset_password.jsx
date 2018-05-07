@@ -43,12 +43,30 @@ class ResetPasswordForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.resetPassword(this.state.email)
+    this.props.resetPassword(this.state.email).then(() => {
+      this.props.clearSessionErrors();
+      this.switchToLoginModal();
+    });
   }
 
   renderErrors() {
     return this.props.errors.base ? <div className={'login-error-message'} style={{ marginTop: '-10px' }}>{this.props.errors.base}</div> : '';
+  }
 
+  switchToLoginModal() {
+    const SESSION_FORM = 'SESSION_FORM'
+    const type = 'reset'
+    const modal = {
+      modalType: SESSION_FORM,
+      modalProps: {
+        type,
+        inputs: ['username', 'password'],
+        showModal: this.props.showModal,
+        hideModal: this.props.hideModal,
+        modalType: SESSION_FORM
+      }
+    };
+    this.props.showModal(modal);
   }
 
   render() {

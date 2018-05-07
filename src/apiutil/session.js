@@ -34,3 +34,11 @@ export const reset = (email) => {
     data: { email }
   })
 }
+
+export const tempLogin = (user) => {
+  return axios({
+    method: 'GET',
+    url: `${baseUrl}/api/session/temp`,
+    data: { user }
+  })
+}

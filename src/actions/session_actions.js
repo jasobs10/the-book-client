@@ -46,6 +46,10 @@ export const signup = (user) => {
   }
 };
 
+export const checkTempPass = (user) => {
+  return APIUTIL.tempLogin(user);
+}
+
 export const login = (user) => {
   return (dispatch) => {
     return APIUTIL.login(user).then((response) => {
