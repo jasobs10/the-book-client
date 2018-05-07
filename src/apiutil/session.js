@@ -26,3 +26,11 @@ export const logout = () => {
     headers: getHeader()
   })
 };
+
+export const reset = (email) => {
+  return axios({
+    method: 'POST',
+    url: `${baseUrl}/api/users/reset_password`,
+    data: { email }
+  })
+}

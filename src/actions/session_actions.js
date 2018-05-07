@@ -27,6 +27,14 @@ export const receiveSessionErrors = (errors) => {
   };
 };
 
+export const resetPassword = (email) => {
+  return (dispatch) => {
+    return APIUTIL.reset(email).catch((error) => {
+      dispatch(receiveSessionErrors(error.response.data));
+    });
+  }
+};
+
 export const signup = (user) => {
   return (dispatch) => {
     return APIUTIL.signup(user).then((response) => {

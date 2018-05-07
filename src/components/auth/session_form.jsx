@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     login: (user) => dispatch(login(user)),
     signup: (user) => dispatch(signup(user)),
-    clearSessionErrors: () => dispatch(receiveSessionErrors([]))
+    clearSessionErrors: () => dispatch(receiveSessionErrors({}))
   }
 )
 
@@ -35,8 +35,9 @@ class SessionForm extends React.Component {
     }
     this.renderInputs = this.renderInputs.bind(this);
     this.updateField = this.updateField.bind(this);
-    this.switchSessionModal = this.switchSessionModal.bind(this);
+    this.toggleSessionModal = this.toggleSessionModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.openPasswordReset = this.openPasswordReset.bind(this);
   }
 
   componentDidMount() {
@@ -110,7 +111,7 @@ class SessionForm extends React.Component {
     })
   }
 
-  switchSessionModal() {
+  toggleSessionModal() {
     const SESSION_FORM = this.props.modalType;
     const type = this.props.type === 'signup' ? 'login' : 'signup';
     const modal = {
@@ -123,8 +124,26 @@ class SessionForm extends React.Component {
         modalType: SESSION_FORM
       }
     };
+    this.openModal(modal);
+  }
+
+  openModal(modal) {
     this.props.clearSessionErrors();
     this.props.showModal(modal);
+  }
+
+  openPasswordReset() {
+    const modal = {
+      modalType: 'RESET_PASSWORD',
+      modalProps: {
+        showModal: this.props.showModal,
+        hideModal: this.props.hideModal,
+        clearSessionErrors: this.props.clearSessionErrors,
+        modalType: 'RESET_PASSWORD'
+      }
+    }
+
+    this.openModal(modal);
   }
 
   // add email password retrival
@@ -138,12 +157,12 @@ class SessionForm extends React.Component {
 
     return (
       <ReactModal
-      isOpen={this.state.isOpen}
-      onRequestClose={this.handleClose}
-      shouldCloseOnOverlayClick={true}
-      contentLabel="Modal Tyme"
-      className="session-modal"
-      overlayClassName="modal-overlay"
+        isOpen={this.state.isOpen}
+        onRequestClose={this.handleClose}
+        shouldCloseOnOverlayClick={true}
+        contentLabel="Modal Tyme"
+        className="session-modal"
+        overlayClassName="modal-overlay"
       >
         <div className="session-form-wrapper">
           <h3 className="session-header">The Book</h3>
@@ -151,11 +170,12 @@ class SessionForm extends React.Component {
           <form className="session-inputs-wrapper">
             {this.renderInputs()}
             {this.renderError('base')}
+            {this.props.type === 'login' ? <span className="link-to" onClick={this.openPasswordReset}>Forgot your password?</span> : ''}
             <input type="submit" className="session-button session-button-large" onClick={this.handleSubmit} value={this.props.type === 'signup' ? 'REGISTER' : 'SIGN IN'}/>
           </form>
           <div className="session-footer">
-            {this.props.type === 'signup' && (<span>Already have an account? <span className="link-to" onClick={this.switchSessionModal}>Log in instead</span></span>)}
-            {this.props.type !== 'signup' && (<span>Don't have an account? <span className="link-to" onClick={this.switchSessionModal}>Register now</span></span>)}
+            {this.props.type === 'signup' && (<span>Already have an account? <span className="link-to" onClick={this.toggleSessionModal}>Log in instead</span></span>)}
+            {this.props.type !== 'signup' && (<span>Don't have an account? <span className="link-to" onClick={this.toggleSessionModal}>Register now</span></span>)}
           </div>
         </div>
       </ReactModal>

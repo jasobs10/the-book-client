@@ -58,3 +58,9 @@
   margin-top: 15px;
   font-size: 15px;
 }
+
+.session-inputs-wrapper > span {
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
