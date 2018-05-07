@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
       l_name: 'Last Name',
       motto: 'Quote',
       email: 'Email',
-      username: 'Username',
+      username: {signup: 'Username', login: 'Username or Email'},
       password: 'Password'
     }
     this.renderInputs = this.renderInputs.bind(this);
@@ -74,7 +74,7 @@ class SessionForm extends React.Component {
   renderInputs() {
     return this.props.inputs.map((input, i) => {
       const type = input === 'password' ? 'password' : 'text';
-      const placeholder = this.inputMapper[input];
+      const placeholder = typeof this.inputMapper[input] === 'string' ? this.inputMapper[input] : this.inputMapper[input][this.props.type]
       const errorClass = this.props.errors.session[input] || this.props.errors.session.base ? 'input-error' : '';
       return (
         <div key={i}>
@@ -123,12 +123,16 @@ class SessionForm extends React.Component {
         modalType: SESSION_FORM
       }
     };
+    this.props.clearSessionErrors();
     this.props.showModal(modal);
   }
 
   // add email password retrival
-  // make button a submit button so we can press enter
-
+  // allow logging in with email also.
+  // add forget username also
+  // add endpoint and controller method for resetting password
+  // add new column temp_password
+  // checks that, and then prompts restting password, then logging in again with real password
   render() {
 
 

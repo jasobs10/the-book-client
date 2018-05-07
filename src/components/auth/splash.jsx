@@ -30,7 +30,7 @@ const Splash = ({ showModal, hideModal }) => {
       modalType: SESSION_FORM,
       modalProps: {
         type,
-        inputs: type === 'signup' ? ['username', 'email', 'password', 'f_name', 'l_name', 'motto'] : ['username', 'password'],
+        inputs: type === 'signup' ? ['username', 'email', 'password', 'f_name', 'l_name'] : ['username', 'password'],
         showModal,
         hideModal,
         modalType: SESSION_FORM
