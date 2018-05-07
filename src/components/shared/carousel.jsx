@@ -93,7 +93,8 @@ class Carousel extends React.Component {
             updateSlide={this.updateSlide}
             currentSlide={this.state.currentSlide}
             totalSlides={this.totalSlides}
-          />
+          >
+          </CarouselIndex>
         </div>
       </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const fart = () => (
+export const test = () => (
   <div>
-    I am the fart body
+    todo
   </div>
 )

@@ -18,6 +18,8 @@ const mapStateToProps = ({ errors }) => {
   }
 }
 
+// add spinners
+
 class UpdatePasswordForm extends React.Component {
   constructor(props) {
     super(props)

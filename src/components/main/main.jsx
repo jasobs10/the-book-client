@@ -2,7 +2,7 @@ import React from 'react';
 import { logout } from '../../actions/session_actions.js';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { fart } from './test.jsx';
+import { test } from './test.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,8 +19,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const Main = props => (
   <div>
-    <button onClick={() => props.logout()}>log out nukka</button>
-    <Route path="/messages" component={fart} />
+    <button onClick={() => props.logout()}>log out</button>
+    <Route path="/messages" component={test} />
   </div>
 );
 
