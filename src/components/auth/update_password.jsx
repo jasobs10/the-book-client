@@ -3,11 +3,11 @@ import '../../styles/base/modal.css';
 import '../../styles/splash/session_form.css';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
-import { resetPassword } from '../../actions/session_actions.js';
+import { updatePasswordAndLogin } from '../../actions/session_actions.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetPassword: (email) => dispatch(resetPassword(email)),
+    updatePassword: (user) => dispatch(updatePasswordAndLogin(user))
   }
 };
 
@@ -17,12 +17,15 @@ const mapStateToProps = ({ errors }) => {
   }
 }
 
-class ResetPasswordForm extends React.Component {
+class UpdatePasswordForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isOpen: true,
-      email: ''
+      username: props.username,
+      password: '',
+      password2: '',
+      temp_password: props.tempPassword
     }
     this.handleClose = this.handleClose.bind(this);
     this.updateField = this.updateField.bind(this);
@@ -37,36 +40,28 @@ class ResetPasswordForm extends React.Component {
     this.props.hideModal();
   }
 
-  updateField(e) {
-    this.setState({email: e.target.value});
+  updateField(field) {
+    return (e) => {
+      this.setState({
+        [field]: e.currentTarget.value
+      })
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.resetPassword(this.state.email).then(() => {
+    this.props.updatePassword({
+      username: this.state.username,
+      password: this.state.password,
+      temp_password: this.state.temp_password
+    }).then(() => {
       this.props.clearSessionErrors();
-      this.switchToLoginModal();
+      this.props.hideModal();
     });
   }
 
   renderErrors() {
     return this.props.errors.base ? <div className={'login-error-message'} style={{ marginTop: '-10px' }}>{this.props.errors.base}</div> : '';
-  }
-
-  switchToLoginModal() {
-    const SESSION_FORM = 'SESSION_FORM'
-    const type = 'reset'
-    const modal = {
-      modalType: SESSION_FORM,
-      modalProps: {
-        type,
-        inputs: ['username', 'password'],
-        showModal: this.props.showModal,
-        hideModal: this.props.hideModal,
-        modalType: SESSION_FORM
-      }
-    };
-    this.props.showModal(modal);
   }
 
   render() {
@@ -80,16 +75,19 @@ class ResetPasswordForm extends React.Component {
         overlayClassName="modal-overlay"
       >
       <div className="session-form-wrapper">
-        <h3 className="session-header">Reset Password</h3>
+        <h3 className="session-header">Update Password</h3>
         <span>
-          Enter the email address you used to register and we'll send you a temporary password to reset your account.
+          Update to New Password
         </span>
         <form className="session-inputs-wrapper">
           <div>
-            <input type="text" className={this.props.errors.base ? 'input-error' : ''} placeholder="Email address" onChange={(e) => this.updateField(e)}/>
+            <input type="text" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password')}/>
+          </div>
+          <div>
+            <input type="text" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password2')}/>
           </div>
           {this.renderErrors()}
-          <input type="submit" className="session-button session-button-large" onClick={(e) => this.handleSubmit(e)} value="RESET PASSWORD"/>
+          <input type="submit" className="session-button session-button-large" onClick={(e) => this.handleSubmit(e)} value="UPDATE PASSWORD"/>
         </form>
       </div>
       </ReactModal>
@@ -97,4 +95,4 @@ class ResetPasswordForm extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdatePasswordForm);

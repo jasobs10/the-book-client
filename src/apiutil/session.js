@@ -35,10 +35,10 @@ export const reset = (email) => {
   })
 }
 
-export const tempLogin = (user) => {
+export const updatePassword = (user) => {
   return axios({
-    method: 'GET',
-    url: `${baseUrl}/api/session/temp`,
+    method: 'PATCH',
+    url: `${baseUrl}/api/users/0`,
     data: { user }
-  })
+  });
 }

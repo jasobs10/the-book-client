@@ -46,20 +46,34 @@ export const signup = (user) => {
   }
 };
 
-export const checkTempPass = (user) => {
-  return APIUTIL.tempLogin(user);
-}
-
 export const login = (user) => {
   return (dispatch) => {
     return APIUTIL.login(user).then((response) => {
-      setUserToLocalStorage(response.data);
-      dispatch(receiveCurrentUser(response.data));
+      console.log(user)
+      if (response.data !== "temp login successful") {
+        setUserToLocalStorage(response.data);
+        dispatch(receiveCurrentUser(response.data));
+      } else {
+        removeUserFromLocalStorage();
+        dispatch(receiveCurrentUser(null));
+      }
+      return (response.data)
     }, (errors) => {
       dispatch(receiveSessionErrors(errors.response.data));
     });
   };
 };
+
+export const updatePasswordAndLogin= (user) => {
+  return (dispatch) => {
+    return APIUTIL.updatePassword(user).then((response) => {
+      setUserToLocalStorage(response.data);
+      dispatch(receiveCurrentUser(response.data));
+    }, (errors) => {
+      dispatch(receiveSessionErrors(errors.response.data));
+    });
+  }
+}
 
 export const logout = () => {
   return (dispatch) => {

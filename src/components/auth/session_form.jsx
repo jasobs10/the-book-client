@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     login: (user) => dispatch(login(user)),
     signup: (user) => dispatch(signup(user)),
-    clearSessionErrors: () => dispatch(receiveSessionErrors({}))
+    clearSessionErrors: () => dispatch(receiveSessionErrors({})),
   }
 )
 
@@ -49,7 +49,6 @@ class SessionForm extends React.Component {
     const submissionMapper = {
       'signup': this.props.signup,
       'login': this.props.login,
-      'reset':
     }
 
     const state = {};
@@ -57,12 +56,26 @@ class SessionForm extends React.Component {
       state[input] = this.state[input];
     });
 
-    submissionMapper[this.props.type](state).then(() => {
-      if (this.props.session.currentUser) {
-        this.props.hideModal();
-      }
-    });
+    if (this.props.type === 'reset') {
+      this.checkTempPass(state);
+    } else {
+      submissionMapper[this.props.type](state).then((response) => {
+        if (response === 'temp login successful') {
+          this.openPasswordUpdate();
+          return;
+        }
+        if (this.props.session.currentUser) {
+          this.props.hideModal();
+        }
+      });
+    }
+  }
 
+  checkTempPass(user) {
+    user.temp = true;
+    this.props.login(user).then(() => {
+      this.openPasswordUpdate();
+    });
   }
 
   updateField(field) {
@@ -140,10 +153,25 @@ class SessionForm extends React.Component {
         showModal: this.props.showModal,
         hideModal: this.props.hideModal,
         clearSessionErrors: this.props.clearSessionErrors,
-        modalType: 'RESET_PASSWORD'
+        modalType: 'RESET_PASSWORD',
       }
     }
 
+    this.openModal(modal);
+  }
+
+  openPasswordUpdate() {
+    const modal = {
+      modalType: 'UPDATE_PASSWORD',
+      modalProps: {
+        showModal: this.props.showModal,
+        hideModal: this.props.hideModal,
+        clearSessionErrors: this.props.clearSessionErrors,
+        modalType: 'UPDATE_PASSWORD',
+        username: this.state.username,
+        tempPassword: this.state.password
+      }
+    }
     this.openModal(modal);
   }
 
