@@ -3,11 +3,12 @@ import '../../styles/base/modal.css';
 import '../../styles/splash/session_form.css';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
-import { updatePasswordAndLogin } from '../../actions/session_actions.js';
+import { updatePasswordAndLogin, receiveSessionErrors } from '../../actions/session_actions.js';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePassword: (user) => dispatch(updatePasswordAndLogin(user))
+    updatePassword: (user) => dispatch(updatePasswordAndLogin(user)),
+    receiveErrors: (error) => dispatch(receiveSessionErrors({base: error}))
   }
 };
 
@@ -50,13 +51,19 @@ class UpdatePasswordForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.password !== this.state.password2) {
+      this.props.receiveErrors('Passwords do not match');
+      return;
+    }
     this.props.updatePassword({
       username: this.state.username,
       password: this.state.password,
       temp_password: this.state.temp_password
-    }).then(() => {
-      this.props.clearSessionErrors();
-      this.props.hideModal();
+    }).then((success) => {
+      if (success) {
+        this.props.clearSessionErrors();
+        this.props.hideModal();
+      }
     });
   }
 
@@ -81,10 +88,10 @@ class UpdatePasswordForm extends React.Component {
         </span>
         <form className="session-inputs-wrapper">
           <div>
-            <input type="text" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password')}/>
+            <input type="password" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password')}/>
           </div>
           <div>
-            <input type="text" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password2')}/>
+            <input type="password" className={this.props.errors.base ? 'input-error' : ''} placeholder="New Password" onChange={this.updateField('password2')}/>
           </div>
           {this.renderErrors()}
           <input type="submit" className="session-button session-button-large" onClick={(e) => this.handleSubmit(e)} value="UPDATE PASSWORD"/>

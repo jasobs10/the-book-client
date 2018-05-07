@@ -69,6 +69,7 @@ export const updatePasswordAndLogin= (user) => {
     return APIUTIL.updatePassword(user).then((response) => {
       setUserToLocalStorage(response.data);
       dispatch(receiveCurrentUser(response.data));
+      return true;
     }, (errors) => {
       dispatch(receiveSessionErrors(errors.response.data));
     });
